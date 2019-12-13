@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import MiniDrawer from'./components/Sidebar';
+import MiniDrawer from'./containers/layout/sidebar/Sidebar';
 import './App.css';
 
 const App: React.FC = () => {
