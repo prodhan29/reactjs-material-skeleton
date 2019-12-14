@@ -97,15 +97,12 @@ export default function MiniDrawer(props: any) {
     let theme = useTheme();
 
     const [open, setOpen] = React.useState(false);
-
     const handleDrawerOpen = () => {
         setOpen(true);
     };
-
     const handleDrawerClose = () => {
         setOpen(false);
     };
-
     return (
         <div className={classes.root} >
             <CssBaseline />

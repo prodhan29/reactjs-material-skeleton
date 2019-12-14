@@ -81,11 +81,11 @@ export default function (
     state: ImmutableTodoState = initialState,
     action: TodoActionTypes
 ): ImmutableTodoState {
-
+    console.log(action.type);
     switch (action.type) {
         case CREATE:
             return SeamlessImmutable({
-                todos: [...state.todos, action.payload],
+                todos: [ ...state.todos, action.payload],
             });
 
         default:

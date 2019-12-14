@@ -29,7 +29,7 @@ const Topbar = (props: any)=> {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap>
-              Mini variant drawer
+              Todo
             </Typography>
           </Toolbar>
         </AppBar>
