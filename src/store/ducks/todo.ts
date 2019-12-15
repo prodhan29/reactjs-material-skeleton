@@ -1,4 +1,5 @@
 import { AnyAction, Store } from 'redux';
+import _ from 'lodash';
 import SeamlessImmutable from 'seamless-immutable';
 
 // Model
@@ -6,6 +7,7 @@ export interface Todo {
     id: number;
     title: string;
     description: string;
+    index?: number;
 }
 
 // Actions
@@ -81,11 +83,16 @@ export default function (
     state: ImmutableTodoState = initialState,
     action: TodoActionTypes
 ): ImmutableTodoState {
-    console.log(action.type);
+ 
     switch (action.type) {
         case CREATE:
             return SeamlessImmutable({
                 todos: [ ...state.todos, action.payload],
+            });
+        case DELETE:
+            let iIndex = action.payload.index!;
+            return SeamlessImmutable({
+                todos: [ ...state.todos.slice(0, iIndex), ...state.todos.slice(iIndex+1)],
             });
 
         default:

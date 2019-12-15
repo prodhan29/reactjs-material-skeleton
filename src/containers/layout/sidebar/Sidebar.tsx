@@ -16,9 +16,6 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             display: 'flex',
         },
-        boxShadow: {
-            boxShadow: '0 10px 30px 0 rgba(82,63,105,.08)',
-        },
         appBar: {
             zIndex: theme.zIndex.drawer + 1,
             transition: theme.transitions.create(['width', 'margin'], {
