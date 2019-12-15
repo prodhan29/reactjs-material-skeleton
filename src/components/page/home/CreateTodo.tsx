@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const initialTodo: Todo = {
   id: new Date().getTime(),
-  title: 'title',
-  description: 'description',
+  title: '',
+  description: '',
   index: -1,
 }
 
@@ -35,6 +35,7 @@ export default function CreateTodo() {
 
   const submit = () => {
     dispatch(createTodo(todo));
+    setTodo(initialTodo);
     showSuccess();
     // history.push('/');
     
@@ -58,11 +59,13 @@ export default function CreateTodo() {
         id="standard-basic"
         label="Title"
         variant="outlined"
+        value = {todo.title}
         onChange={(e) => setTodo({ ...todo, title: e.target.value })} />
       <br></br>
       <TextField
         id="filled-basic"
         label="Description"
+        value={todo.description}
         onChange={(e) => setTodo({ ...todo, description: e.target.value })} />
       <br></br>
       <Button variant="contained" color="primary" onClick={submit}>
