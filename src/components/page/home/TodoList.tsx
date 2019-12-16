@@ -2,9 +2,12 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import RemoveCircle from '@material-ui/icons/RemoveCircle';
 import { useDispatch } from 'react-redux';
 import { deleteTodo, Todo } from '../../../store/ducks/todo';
+import { Container, Row, Col } from 'reactstrap';
+import { Button } from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,23 +27,36 @@ export default function TodoList(props?: any) {
   const { list } = props;
 
   return (
-    <React.Fragment>
+    <Container>
       {
         list.map((t: Todo, index: number) =>
-          <React.Fragment  key={t.id}>
-            <Paper className={classes.root}>
-              <Typography component="p">
-                {t.title}
-                  <RemoveCircle
-                    onClick={() => {let _todo = {...t, index,}; dispatch(deleteTodo(_todo))}}
-                    style={{ textAlign: 'right', color: 'red' }}/>
-              </Typography>
-              <p> {t.description} </p>
-            </Paper>
+          <React.Fragment key={t.id}>
+            <Row>
+              <Col sm="10">
+                <Paper className={classes.root}>
+                  <Typography component="p">
+                    {t.title}
+                  </Typography>
+                  <p> {t.description} </p>
+                </Paper>
+              </Col>
+              <Row style={{ width: '25px' }}>
+                <Col sm="12">
+                  <Button color="primary" aria-label="add">
+                    <EditIcon />
+                  </Button>
+                </Col>
+                <Col sm="12">
+                  <Button color="primary" aria-label="add" onClick={() => {dispatch(deleteTodo({ ...t, index,})) }} >
+                    <DeleteIcon/>
+                  </Button>
+                </Col>
+              </Row>
+            </Row>
             <br></br>
           </React.Fragment>
         )
       }
-    </React.Fragment>
+    </Container>
   );
 }

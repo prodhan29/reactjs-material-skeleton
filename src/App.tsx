@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import MiniDrawer from './containers/layout/sidebar/Sidebar';
 import './App.css';
 import Home from './containers/pages/home';

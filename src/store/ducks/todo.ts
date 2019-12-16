@@ -1,5 +1,4 @@
-import { AnyAction, Store } from 'redux';
-import _ from 'lodash';
+import { AnyAction } from 'redux';
 import SeamlessImmutable from 'seamless-immutable';
 
 // Model
@@ -64,16 +63,15 @@ export const loadTodo = (payload: Todo[]): LoadTodoAction => ({
     payload,
 });
 
-
 /** interface for todo state in redux store */
 interface TodoState {
-    todos: any;
+    todos: Array<Todo>;
 }
 
 /** Create an immutable todo state */
-export type ImmutableTodoState = TodoState & SeamlessImmutable.ImmutableObject<TodoState>;
+export type ImmutableTodoState =  SeamlessImmutable.ImmutableObject<TodoState>;
 
-/** initial todo-state state */
+/** initial todo-state  */
 const initialState: ImmutableTodoState = SeamlessImmutable({
     todos: [],
 });
@@ -86,13 +84,14 @@ export default function (
  
     switch (action.type) {
         case CREATE:
+            console.log(state.todos.asMutable());
             return SeamlessImmutable({
-                todos: [ ...state.todos, action.payload],
+                todos: [ ...state.todos.asMutable(), action.payload],
             });
         case DELETE:
             let iIndex = action.payload.index!;
             return SeamlessImmutable({
-                todos: [ ...state.todos.slice(0, iIndex), ...state.todos.slice(iIndex+1)],
+                todos: [ ...state.todos.asMutable().slice(0, iIndex), ...state.todos.asMutable().slice(iIndex+1)],
             });
 
         default:

@@ -1,26 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createTodo, Todo } from '../../store/ducks/todo';
+import { createTodo } from '../../store/ducks/todo';
 import TodoList from '../../components/page/home/TodoList';
 import { Link } from 'react-router-dom';
 
-class Home extends React.Component<any, any> {
-
-  constructor(props: any) {
-    super(props);
-  }
-
-  createAction = () => {
-    console.log("from create action");
-    const task: Todo = {
-      id: (new Date()).getTime(),
-      title: 'Test 1',
-      description: 'complete the react-reducer connection',
-      index: -1,
-    }
-    this.props.createTodo(task);
-  }
-
+class Home extends React.Component<any, {}> {
   render() {
     return (
       <div>

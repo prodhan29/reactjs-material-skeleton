@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const initialTodo: Todo = {
-  id: new Date().getTime(),
+  id: -1,
   title: '',
   description: '',
   index: -1,
@@ -34,11 +34,10 @@ export default function CreateTodo() {
   const history = useHistory();
 
   const submit = () => {
+    todo.id = new Date().getTime();
     dispatch(createTodo(todo));
     setTodo(initialTodo);
     showSuccess();
-    // history.push('/');
-    
   }
 
   const showSuccess = () => {
