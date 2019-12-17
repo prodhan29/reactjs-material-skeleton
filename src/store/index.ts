@@ -4,7 +4,12 @@ import TodoReducer from './ducks/todo';
 export const composeEnhancers =
   (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
-export default createStore(combineReducers({
-    todo: TodoReducer,
-}), composeEnhancers());
+
+const rootReducer = combineReducers({
+  todo: TodoReducer,
+});
+
+export type AppState = ReturnType<typeof rootReducer>; 
+
+export default createStore(rootReducer, composeEnhancers());
 
